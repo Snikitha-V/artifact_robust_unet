@@ -1,0 +1,17 @@
+﻿# PyTorch - install appropriate CUDA/cuDNN version for your system
+torch
+torchvision
+
+# Medical/image libs
+torchio
+monai
+nibabel
+scikit-image
+
+# Utilities
+numpy
+scipy
+pandas
+matplotlib
+tqdm
+opencv-python

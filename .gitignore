@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual env
+.venv/
+venv/
+ENV/
+
+# VS Code
+.vscode/
+
+# Data and outputs
+/data/
+/eval_debug/
+*.pth
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Large medical files (if any accidentally added)
+*.nii
+*.nii.gz
