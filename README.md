@@ -1,6 +1,6 @@
-# 🫀 Heart Detector - Model Performance Fix & Optimization Guide
+# Heart Detector - Model Performance Fix & Optimization Guide
 
-## 📌 Executive Summary
+##  Executive Summary
 
 This repository contains a comprehensive fix for the heart segmentation model's critically low performance (Dice 0.1816). We've created **two completely optimized scripts** with full GPU/CPU utilization, artifact augmentation, and better hyperparameters. This guide explains the problem, the solution, and how to use the improved training and evaluation pipelines.
 
@@ -8,7 +8,7 @@ This repository contains a comprehensive fix for the heart segmentation model's 
 
 ---
 
-## 🎯 Quick Start
+##  Quick Start
 
 ### 1. Train Improved Model
 ```bash
@@ -27,7 +27,7 @@ python train_improved.py --checkpoint unet_acdc_best.pth --epochs 200
 
 ---
 
-## 📊 Problem Analysis
+##  Problem Analysis
 
 ### Current Performance (CRITICAL)
 ```
@@ -61,7 +61,7 @@ FG Prediction       1.06%       2.5-3%      2.4-2.8x
 
 ---
 
-## ✅ Solutions Implemented
+##  Solutions Implemented
 
 ### 1. **train_improved.py** - Complete Training Rewrite
 
@@ -130,7 +130,7 @@ FG Prediction       1.06%       2.5-3%      2.4-2.8x
 
 ---
 
-## 📈 Performance Comparison
+##  Performance Comparison
 
 ### Side-by-Side: Original vs Improved
 
@@ -141,10 +141,10 @@ FG Prediction       1.06%       2.5-3%      2.4-2.8x
 | **Evaluation Batch Size** | 2 | 16 | +800% |
 | **DataLoader Workers** | 8/0 | 8 | Consistent |
 | **GPU Memory Format** | Default | channels_last | +10-30% |
-| **Artifact Augmentation** | ❌ | ✅ 6 types | +3-4x quality |
+| **Artifact Augmentation** | - |  6 types | +3-4x quality |
 | **Learning Rate** | 5e-4 | 1e-3 | 2x faster |
-| **Label Smoothing** | ❌ | ✅ 0.1 | Better convergence |
-| **Gradient Accumulation** | ❌ | ✅ 2 steps | Stabler updates |
+| **Label Smoothing** | - |  0.1 | Better convergence |
+| **Gradient Accumulation** | - |  2 steps | Stabler updates |
 | **Training Speed** | Baseline | 1.5x | +50% |
 | **Evaluation Speed** | Baseline | 4-5x | 4-5x faster |
 | **GPU Utilization (train)** | 30-40% | 70-80% | 2.3x |
@@ -205,7 +205,7 @@ Util: ~100% (GPU always processing!)
 
 ---
 
-## 📋 Usage Guide
+##  Usage Guide
 
 ### Training
 
@@ -295,7 +295,7 @@ python evaluate_improved.py --bias-coeff 0.5
 
 ---
 
-## 📊 Expected Results
+##  Expected Results
 
 ### Performance Prediction
 
@@ -370,34 +370,34 @@ Total Time:   45-60 minutes
 
 ---
 
-## 📁 File Structure
+## File Structure
 
 ### New Scripts
 ```
-✅ train_improved.py      - Improved training pipeline (320 lines)
-✅ evaluate_improved.py   - Improved evaluation pipeline (280 lines)
+ train_improved.py      - Improved training pipeline (320 lines)
+ evaluate_improved.py   - Improved evaluation pipeline (280 lines)
 ```
 
 ### Original Scripts (Unchanged)
 ```
-📄 train.py              - Original training script (preserved for comparison)
-📄 evaluate.py           - Original evaluation script (preserved for comparison)
-📄 train_atention.py     - Attention UNet training
-📄 debug_train.py        - Debug training script
-📄 debug_eval.py         - Debug evaluation script
+ train.py              - Original training script (preserved for comparison)
+ evaluate.py           - Original evaluation script (preserved for comparison)
+ train_atention.py     - Attention UNet training
+ debug_train.py        - Debug training script
+ debug_eval.py         - Debug evaluation script
 ```
 
 ### Generated Outputs
 ```
-📊 unet_acdc_best.pth         - Best model checkpoint (auto-generated)
-📊 unet_acdc.pth              - Final model (auto-generated)
-📊 training_metrics.json      - Training loss history (auto-generated)
-📊 evaluation_results.json    - Performance metrics (auto-generated)
+ unet_acdc_best.pth         - Best model checkpoint (auto-generated)
+ unet_acdc.pth              - Final model (auto-generated)
+ training_metrics.json      - Training loss history (auto-generated)
+ evaluation_results.json    - Performance metrics (auto-generated)
 ```
 
 ---
 
-## 🎓 Key Improvements Explained
+##  Key Improvements Explained
 
 ### Why 3-4x Better Performance?
 
@@ -434,7 +434,7 @@ Total Time:   45-60 minutes
 
 ---
 
-## 📚 Model Metrics Explained
+##  Model Metrics Explained
 
 ### Dice Coefficient
 - **Range:** 0-1 (higher is better)
@@ -463,7 +463,7 @@ Total Time:   45-60 minutes
 
 ---
 
-## 🔐 Model Checkpointing
+##  Model Checkpointing
 
 ### Auto-Saved Checkpoints
 ```
@@ -497,7 +497,7 @@ python train_improved.py --checkpoint path/to/checkpoint.pth
 
 ---
 
-## 📊 Monitoring Training
+##  Monitoring Training
 
 ### What to Watch
 
@@ -528,29 +528,29 @@ Best model saved when validation improves
 
 ---
 
-## 🎯 Success Criteria
+##  Success Criteria
 
 ### Training Complete When:
-- ✅ Early stop triggered (15 epochs without improvement)
-- ✅ `unet_acdc_best.pth` created
-- ✅ `training_metrics.json` saved
-- ✅ Loss converged to reasonable value (<0.3)
+-  Early stop triggered (15 epochs without improvement)
+-  `unet_acdc_best.pth` created
+-  `training_metrics.json` saved
+-  Loss converged to reasonable value (<0.3)
 
 ### Model Is Good When:
-- ✅ Dice on clean validation data >0.50
-- ✅ HD95 distance <25mm
-- ✅ Performance degrades gracefully on artifacts
-- ✅ Training time <2 hours
+-  Dice on clean validation data >0.50
+-  HD95 distance <25mm
+-  Performance degrades gracefully on artifacts
+-  Training time <2 hours
 
 ### Evaluation Confirms Success When:
-- ✅ Dice Clean >0.45
-- ✅ Dice decreases <30% on motion artifacts
-- ✅ Evaluation completes in <5 minutes
-- ✅ Results saved to JSON
+-  Dice Clean >0.45
+-  Dice decreases <30% on motion artifacts
+-  Evaluation completes in <5 minutes
+-  Results saved to JSON
 
 ---
 
-## 🚀 Performance Optimization Tips
+## Performance Optimization Tips
 
 ### For Maximum Speed
 ```bash
@@ -581,7 +581,7 @@ python train_improved.py --batch-size 8 --accumulation-steps 4
 
 ---
 
-## 📝 Output Files
+##  Output Files
 
 ### training_metrics.json
 ```json
@@ -619,7 +619,7 @@ python train_improved.py --batch-size 8 --accumulation-steps 4
 
 ---
 
-## 🔗 Related Files
+## Related Files
 
 - `models/unet.py` - UNet architecture
 - `models/attention_unet.py` - Attention UNet architecture
@@ -630,70 +630,6 @@ python train_improved.py --batch-size 8 --accumulation-steps 4
 
 ---
 
-## ❓ FAQ
-
-**Q: How long does training take?**
-A: 45-60 minutes typically (with early stopping around epoch 50-80)
-
-**Q: What if I interrupt training?**
-A: Best checkpoint is already saved - resume with `--checkpoint unet_acdc_best.pth`
-
-**Q: Can I train on CPU?**
-A: Yes, but GPU 50x faster. Script auto-detects device.
-
-**Q: What if I run out of GPU memory?**
-A: Use `--batch-size 8 --accumulation-steps 4` (effective batch still 32)
-
-**Q: How do I know if training is working?**
-A: Loss should decrease smoothly from ~1.2 to ~0.15. GPU util should be 70%+
-
-**Q: Why 3-4x improvement?**
-A: Batch size (1.3x) + artifacts (2.5x) + hyperparameters (1.2x) = 4.3x total
-
-**Q: Is artifact augmentation necessary?**
-A: Yes! It's responsible for 2-3x of the improvement. Enables real-world robustness.
-
-**Q: Can I use different batch sizes?**
-A: Yes, but 16-32 is optimal for RTX A2000. Trade-off between speed and memory.
-
-**Q: How do I track experiments?**
-A: Metrics saved to `training_metrics.json` and `evaluation_results.json`
-
-**Q: Can I use this with other datasets?**
-A: Yes! Just update data paths in scripts. Dataset logic is in `dataset/acdc_dataset.py`
-
----
-
-## 📞 Support
-
-### Common Issues & Solutions
-
-1. **scikit-image not found**
-   ```bash
-   pip install scikit-image
-   ```
-
-2. **CUDA out of memory**
-   ```bash
-   python train_improved.py --batch-size 8 --accumulation-steps 4
-   ```
-
-3. **Training too slow**
-   - Check `nvidia-smi` for GPU utilization (should be >70%)
-   - Verify `num_workers` > 0
-   - Try `--batch-size 32` if memory allows
-
-4. **Loss not decreasing**
-   - Learning rate might be too low: try `--lr 2e-3`
-   - Or too high: try `--lr 5e-4`
-   - Or need longer training: `--epochs 200`
-
-5. **Model performance still low**
-   - Let training run full 150 epochs (don't interrupt)
-   - Verify early stop has triggered
-   - Check that best model is being used
-
----
 
 ## 🎓 References
 
@@ -705,13 +641,8 @@ A: Yes! Just update data paths in scripts. Dataset logic is in `dataset/acdc_dat
 
 ---
 
-## 📜 License
 
-This project is part of the artifact_robust_unet repository.
-
----
-
-## ✅ Summary
+## Summary
 
 | Aspect | Status |
 |--------|--------|
@@ -725,4 +656,4 @@ This project is part of the artifact_robust_unet repository.
 
 ---
 
-**Start training now and your model will be 3-4x better in about 2 hours! 🚀**
+
